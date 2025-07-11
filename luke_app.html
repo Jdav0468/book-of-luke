@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modern Book of Luke</title>
-  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/babel-standalone@7.22.9/babel.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 font-sans">
-  <div id="root"></div>
-  <script type="text/babel">
+
+
+
+  
+  
+  Modern Book of Luke
+  
+  
+  
+  
+
+
+  
+  
     // Sample data for Luke (replace with actual text or API call in production)
     const lukeData = {
       chapters: [
@@ -21,92 +21,92 @@
       ]
     };
 
-    // React Component for Chapter Card
-    function ChapterCard({ chapter, verses, summary }) {
-      return (
-        <div className="bg-white p-6 m-4 rounded-lg shadow-md hover:shadow-lg transition">
-          <h2 className="text-xl font-bold text-blue-600">Chapter {chapter}</h2>
-          <p className="text-gray-600 mt-2">{summary}</p>
-          <p className="text-gray-500 mt-2 text-sm">{verses}</p>
-          <button
-            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-            onClick={() => alert(`Reading Luke Chapter ${chapter}`)}
-          >
-            Read Chapter
-          </button>
-          <button
-            className="mt-2 ml-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-            onClick={() => speak(`Chapter ${chapter}: ${summary}`)}
-          >
-            Listen
-          </button>
-          <button
-            className="mt-2 ml-2 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-            onClick={() => shareChapter(chapter)}
-          >
-            Share
-          </button>
-        </div>
-      );
-    }
+<pre><code>// React Component for Chapter Card
+function ChapterCard({ chapter, verses, summary }) {
+  return (
+    &lt;div className=&quot;bg-white p-6 m-4 rounded-lg shadow-md hover:shadow-lg transition&quot;&gt;
+      &lt;h2 className=&quot;text-xl font-bold text-blue-600&quot;&gt;Chapter {chapter}&lt;/h2&gt;
+      &lt;p className=&quot;text-gray-600 mt-2&quot;&gt;{summary}&lt;/p&gt;
+      &lt;p className=&quot;text-gray-500 mt-2 text-sm&quot;&gt;{verses}&lt;/p&gt;
+      &lt;button
+        className=&quot;mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600&quot;
+        onClick={() =&gt; alert(`Reading Luke Chapter ${chapter}`)}
+      &gt;
+        Read Chapter
+      &lt;/button&gt;
+      &lt;button
+        className=&quot;mt-2 ml-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600&quot;
+        onClick={() =&gt; speak(`Chapter ${chapter}: ${summary}`)}
+      &gt;
+        Listen
+      &lt;/button&gt;
+      &lt;button
+        className=&quot;mt-2 ml-2 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600&quot;
+        onClick={() =&gt; shareChapter(chapter)}
+      &gt;
+        Share
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
 
-    // Main App Component
-    function App() {
-      const [searchTerm, setSearchTerm] = React.useState('');
+// Main App Component
+function App() {
+  const [searchTerm, setSearchTerm] = React.useState(&#39;&#39;);
 
-      const filteredChapters = lukeData.chapters.filter(ch =>
-        ch.summary.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        ch.verses.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+  const filteredChapters = lukeData.chapters.filter(ch =&gt;
+    ch.summary.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    ch.verses.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-      return (
-        <div className="container mx-auto p-4">
-          <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">The Book of Luke</h1>
-          <div className="mb-6">
-            <input
-              type="text"
-              placeholder="Search chapters..."
-              className="w-full p-2 border rounded"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredChapters.map(ch => (
-              <ChapterCard
-                key={ch.chapter}
-                chapter={ch.chapter}
-                verses={ch.verses}
-                summary={ch.summary}
-              />
-            ))}
-          </div>
-        </div>
-      );
-    }
+  return (
+    &lt;div className=&quot;container mx-auto p-4&quot;&gt;
+      &lt;h1 className=&quot;text-3xl font-bold text-center text-gray-800 mb-6&quot;&gt;The Book of Luke&lt;/h1&gt;
+      &lt;div className=&quot;mb-6&quot;&gt;
+        &lt;input
+          type=&quot;text&quot;
+          placeholder=&quot;Search chapters...&quot;
+          className=&quot;w-full p-2 border rounded&quot;
+          value={searchTerm}
+          onChange={(e) =&gt; setSearchTerm(e.target.value)}
+        /&gt;
+      &lt;/div&gt;
+      &lt;div className=&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4&quot;&gt;
+        {filteredChapters.map(ch =&gt; (
+          &lt;ChapterCard
+            key={ch.chapter}
+            chapter={ch.chapter}
+            verses={ch.verses}
+            summary={ch.summary}
+          /&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
 
-    // Speech Synthesis for audio narration
-    function speak(text) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      window.speechSynthesis.speak(utterance);
-    }
+// Speech Synthesis for audio narration
+function speak(text) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  window.speechSynthesis.speak(utterance);
+}
 
-    // Share functionality
-    function shareChapter(chapter) {
-      if (navigator.share) {
-        navigator.share({
-          title: `Book of Luke - Chapter ${chapter}`,
-          text: `Explore Chapter ${chapter} of the Book of Luke!`,
-          url: window.location.href
-        }).catch(err => console.error('Share failed:', err));
-      } else {
-        alert('Sharing not supported on this device. Copy the link to share!');
-      }
-    }
+// Share functionality
+function shareChapter(chapter) {
+  if (navigator.share) {
+    navigator.share({
+      title: `Book of Luke - Chapter ${chapter}`,
+      text: `Explore Chapter ${chapter} of the Book of Luke!`,
+      url: window.location.href
+    }).catch(err =&gt; console.error(&#39;Share failed:&#39;, err));
+  } else {
+    alert(&#39;Sharing not supported on this device. Copy the link to share!&#39;);
+  }
+}
 
-    // Render the App
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-  </script>
-</body>
-</html>
+// Render the App
+const root = ReactDOM.createRoot(document.getElementById(&#39;root&#39;));
+root.render(&lt;App /&gt;);
+</code></pre>
+<p>  
+(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95d9372239e6f0b8',t:'MTc1MjI0NjQ5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();
